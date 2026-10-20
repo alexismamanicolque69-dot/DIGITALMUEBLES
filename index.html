@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Nogal | Muebles digitales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#F1F3EF; --tinta:#1B2823; --pino:#214A3C; --pino-claro:#DCE7E0;
+  --linea:#CBD3CD; --yape:#742284; --yape-claro:#F3E7F6; --blanco:#fff;
+  --titulo:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --texto:"Figtree","Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--texto);background:var(--fondo);color:var(--tinta);line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--yape);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;border-bottom:1px solid var(--linea);background:var(--fondo);position:sticky;top:0;z-index:5}
+.logo{font-family:var(--titulo);font-weight:800;font-size:1.4rem;text-decoration:none}
+nav{display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;font-weight:500}
+.btn-carrito{background:var(--pino);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:600 .95rem var(--texto);cursor:pointer}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 5vw;max-width:1200px;margin:auto}
+.hero h1{font-family:var(--titulo);font-weight:800;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.02em}
+.hero p{font-size:1.15rem;max-width:46ch;margin:20px 0 28px}
+.cta{display:inline-block;background:var(--pino);color:#fff;padding:14px 26px;border-radius:8px;text-decoration:none;font-weight:600}
+.hero-arte{background:var(--pino-claro);border-radius:24px;aspect-ratio:1;display:grid;place-items:center;font-size:clamp(6rem,18vw,11rem)}
+
+section{max-width:1200px;margin:auto;padding:40px 5vw}
+h2{font-family:var(--titulo);font-size:2rem;margin-bottom:8px}
+.sub{color:#4B5B54;margin-bottom:28px}
+
+.filtros{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.filtros button{border:1px solid var(--linea);background:var(--blanco);border-radius:999px;padding:8px 18px;font:500 .95rem var(--texto);cursor:pointer}
+.filtros button.activo{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.prod{background:var(--blanco);border:1px solid var(--linea);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.prod .img{height:170px;display:grid;place-items:center;font-size:4.5rem}
+.prod .info{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.prod h3{font-family:var(--titulo);font-size:1.15rem}
+.prod .desc{font-size:.92rem;color:#4B5B54;flex:1}
+.prod .precio{font-weight:700;font-size:1.2rem}
+.prod button{margin-top:8px;background:var(--pino);color:#fff;border:0;border-radius:8px;padding:10px;font:600 .95rem var(--texto);cursor:pointer}
+
+.pedido{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.caja{background:var(--blanco);border:1px solid var(--linea);border-radius:14px;padding:24px}
+.caja h3{font-family:var(--titulo);margin-bottom:14px}
+.linea-carrito{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--linea)}
+.linea-carrito small{color:#4B5B54}
+.cant{display:flex;align-items:center;gap:8px}
+.cant button{width:28px;height:28px;border-radius:6px;border:1px solid var(--linea);background:var(--fondo);cursor:pointer;font-weight:700}
+.total{display:flex;justify-content:space-between;font-size:1.3rem;font-weight:700;margin-top:16px}
+.vacio{color:#4B5B54}
+
+label{display:block;font-weight:600;margin:14px 0 6px}
+input,textarea{width:100%;padding:11px 12px;border:1px solid var(--linea);border-radius:8px;font:1rem var(--texto);background:#fff}
+
+.yape{background:var(--yape-claro);border:2px solid var(--yape);border-radius:14px;padding:20px;margin-top:20px}
+.yape h4{color:var(--yape);font-family:var(--titulo);font-size:1.2rem;margin-bottom:10px}
+.yape .qr{width:150px;height:150px;border:2px dashed var(--yape);border-radius:10px;display:grid;place-items:center;text-align:center;font-size:.8rem;color:var(--yape);background:#fff;margin:10px 0}
+.yape .num{font-family:var(--titulo);font-size:1.6rem;font-weight:800;color:var(--yape)}
+.yape ol{padding-left:20px;margin:10px 0}
+.enviar{width:100%;margin-top:18px;background:var(--yape);color:#fff;border:0;border-radius:8px;padding:14px;font:700 1rem var(--texto);cursor:pointer}
+.aviso{font-size:.85rem;color:#4B5B54;margin-top:10px}
+.error{color:#B3261E;font-weight:600;margin-top:10px;min-height:1.2em}
+
+footer{text-align:center;padding:36px 5vw;border-top:1px solid var(--linea);color:#4B5B54;margin-top:30px}
+
+@media (max-width:800px){
+  .hero,.pedido{grid-template-columns:1fr}
+  nav a.enlace{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">Casa Nogal</a>
+  <nav>
+    <a class="enlace" href="#catalogo">Catálogo</a>
+    <a class="enlace" href="#pedido">Mi pedido</a>
+    <button class="btn-carrito" id="abrirPedido">Carrito (<span id="contador">0</span>)</button>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div>
+      <h1>Muebles para tu casa, sin salir de ella.</h1>
+      <p>Elige, arma tu pedido y paga con Yape en un minuto. Entregamos en tu domicilio.</p>
+      <a class="cta" href="#catalogo">Ver muebles</a>
+    </div>
+    <div class="hero-arte" aria-hidden="true">🛋️</div>
+  </div>
+
+  <section id="catalogo">
+    <h2>Catálogo</h2>
+    <p class="sub">Todos los precios están en soles (S/).</p>
+    <div class="filtros" id="filtros"></div>
+    <div class="grid" id="productos"></div>
+  </section>
+
+  <section id="pedido">
+    <h2>Mi pedido</h2>
+    <p class="sub">Revisa tus muebles, completa tus datos y paga con Yape.</p>
+    <div class="pedido">
+      <div class="caja">
+        <h3>Resumen</h3>
+        <div id="lineas"></div>
+        <div class="total"><span>Total</span><span id="total">S/ 0.00</span></div>
+      </div>
+
+      <div class="caja">
+        <h3>Datos de entrega y pago</h3>
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" autocomplete="name">
+        <label for="celular">Celular</label>
+        <input id="celular" inputmode="tel" autocomplete="tel">
+        <label for="direccion">Dirección de entrega</label>
+        <textarea id="direccion" rows="2"></textarea>
+
+        <div class="yape">
+          <h4>Paga con Yape</h4>
+          <p>Yapea el total a:</p>
+          <div class="num" id="numYape">999 999 999</div>
+          <p>A nombre de: <strong id="titularYape">Casa Nogal</strong></p>
+          <div class="qr">Pega aquí<br>tu código QR<br>de Yape</div>
+          <ol>
+            <li>Abre Yape y yapea el monto exacto.</li>
+            <li>Copia el número de operación del comprobante.</li>
+            <li>Escríbelo abajo y envía tu pedido.</li>
+          </ol>
+          <label for="operacion">Número de operación de Yape</label>
+          <input id="operacion" inputmode="numeric">
+        </div>
+
+        <div class="error" id="error" role="alert"></div>
+        <button class="enviar" id="enviar">Enviar pedido por WhatsApp</button>
+        <p class="aviso">Confirmaremos tu pago y te avisaremos la fecha de entrega.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Casa Nogal · Muebles digitales</footer>
+
+<script>
+// ====== CONFIGURA ESTOS DATOS ======
+const NUMERO_YAPE = "999 999 999";        // tu número de Yape
+const TITULAR_YAPE = "Casa Nogal";        // nombre que aparece en Yape
+const WHATSAPP = "51999999999";           // tu WhatsApp con código de país (51 = Perú)
+// ===================================
+
+const productos = [
+  {id:1,nombre:"Sofá Andino 3 plazas",cat:"Sala",precio:1290,emoji:"🛋️",fondo:"#DCE7E0",desc:"Tela antimanchas, patas de madera."},
+  {id:2,nombre:"Mesa de centro Cedro",cat:"Sala",precio:350,emoji:"🪵",fondo:"#E6E1D6",desc:"Cedro macizo con acabado mate."},
+  {id:3,nombre:"Cama 2 plazas Quilla",cat:"Dormitorio",precio:980,emoji:"🛏️",fondo:"#DDE3EC",desc:"Cabecera tapizada, base reforzada."},
+  {id:4,nombre:"Velador Luna",cat:"Dormitorio",precio:180,emoji:"🕯️",fondo:"#EBDDE0",desc:"Un cajón con riel silencioso."},
+  {id:5,nombre:"Comedor 6 sillas Roble",cat:"Comedor",precio:1650,emoji:"🪑",fondo:"#E8E3D2",desc:"Mesa extensible y 6 sillas."},
+  {id:6,nombre:"Escritorio Taller",cat:"Oficina",precio:420,emoji:"🖥️",fondo:"#D9E4E8",desc:"Tablero amplio y pasacables."},
+  {id:7,nombre:"Silla ergonómica Pampa",cat:"Oficina",precio:390,emoji:"💺",fondo:"#E1E4D5",desc:"Soporte lumbar y altura regulable."},
+  {id:8,nombre:"Ropero 3 puertas Colca",cat:"Dormitorio",precio:870,emoji:"🚪",fondo:"#E4DDD6",desc:"Espejo central y repisas internas."}
+];
+
+const carrito = {};
+let categoria = "Todos";
+const $ = id => document.getElementById(id);
+const soles = n => "S/ " + n.toFixed(2);
+
+$("numYape").textContent = NUMERO_YAPE;
+$("titularYape").textContent = TITULAR_YAPE;
+
+function pintarFiltros(){
+  const cats = ["Todos", ...new Set(productos.map(p => p.cat))];
+  $("filtros").innerHTML = cats.map(c =>
+    `<button class="${c===categoria?"activo":""}" data-cat="${c}">${c}</button>`).join("");
+}
+
+function pintarProductos(){
+  const lista = productos.filter(p => categoria==="Todos" || p.cat===categoria);
+  $("productos").innerHTML = lista.map(p => `
+    <article class="prod">
+      <div class="img" style="background:${p.fondo}" aria-hidden="true">${p.emoji}</div>
+      <div class="info">
+        <h3>${p.nombre}</h3>
+        <p class="desc">${p.desc}</p>
+        <span class="precio">${soles(p.precio)}</span>
+        <button data-add="${p.id}">Agregar al pedido</button>
+      </div>
+    </article>`).join("");
+}
+
+function pintarCarrito(){
+  const ids = Object.keys(carrito);
+  let total = 0, unidades = 0;
+  $("lineas").innerHTML = ids.length ? ids.map(id => {
+    const p = productos.find(x => x.id == id), c = carrito[id];
+    total += p.precio * c; unidades += c;
+    return `<div class="linea-carrito">
+      <div>${p.nombre}<br><small>${soles(p.precio)} c/u</small></div>
+      <div class="cant">
+        <button data-menos="${id}" aria-label="Quitar uno">−</button>
+        <span>${c}</span>
+        <button data-mas="${id}" aria-label="Agregar uno">+</button>
+      </div></div>`;
+  }).join("") : `<p class="vacio">Aún no agregaste muebles. Elige alguno del catálogo.</p>`;
+  $("total").textContent = soles(total);
+  $("contador").textContent = unidades;
+}
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.dataset.cat){ categoria = t.dataset.cat; pintarFiltros(); pintarProductos(); }
+  if (t.dataset.add){ carrito[t.dataset.add] = (carrito[t.dataset.add]||0)+1; pintarCarrito(); }
+  if (t.dataset.mas){ carrito[t.dataset.mas]++; pintarCarrito(); }
+  if (t.dataset.menos){ if(--carrito[t.dataset.menos] <= 0) delete carrito[t.dataset.menos]; pintarCarrito(); }
+});
+
+$("abrirPedido").onclick = () => $("pedido").scrollIntoView({behavior:"smooth"});
+
+$("enviar").onclick = () => {
+  const ids = Object.keys(carrito);
+  const nombre = $("nombre").value.trim(), cel = $("celular").value.trim(),
+        dir = $("direccion").value.trim(), op = $("operacion").value.trim();
+  const err = $("error");
+  if (!ids.length) return err.textContent = "Agrega al menos un mueble a tu pedido.";
+  if (!nombre || !cel || !dir) return err.textContent = "Completa tu nombre, celular y dirección.";
+  if (op.length < 6) return err.textContent = "Escribe el número de operación de tu pago con Yape.";
+  err.textContent = "";
+
+  let total = 0;
+  const detalle = ids.map(id => {
+    const p = productos.find(x => x.id == id), c = carrito[id];
+    total += p.precio * c;
+    return `• ${c} x ${p.nombre} - ${soles(p.precio*c)}`;
+  }).join("\n");
+
+  const msg = `Hola, quiero confirmar mi pedido:\n\n${detalle}\n\nTotal: ${soles(total)}\nPago: Yape (operación ${op})\n\nNombre: ${nombre}\nCelular: ${cel}\nDirección: ${dir}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+};
+
+pintarFiltros(); pintarProductos(); pintarCarrito();
+</script>
+</body>
+</html>
